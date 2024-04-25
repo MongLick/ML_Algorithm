@@ -5,6 +5,8 @@ VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ML_Algorithm", "ML_Algorithm\ML_Algorithm.csproj", "{B88BF115-6631-462A-B40B-DBE7E6F8D3F7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01.List", "01.List\01.List.csproj", "{414771D0-4D9E-4FCC-A20C-E743693F8B7D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{B88BF115-6631-462A-B40B-DBE7E6F8D3F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B88BF115-6631-462A-B40B-DBE7E6F8D3F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B88BF115-6631-462A-B40B-DBE7E6F8D3F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{414771D0-4D9E-4FCC-A20C-E743693F8B7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{414771D0-4D9E-4FCC-A20C-E743693F8B7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{414771D0-4D9E-4FCC-A20C-E743693F8B7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{414771D0-4D9E-4FCC-A20C-E743693F8B7D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
