@@ -85,7 +85,6 @@ namespace _02._LinkedList
 			LinkedListNode<string> node4 = linkedList.AddBefore(node0, "4번 데이터");
 			LinkedListNode<string> node5 = linkedList.AddAfter(node0, "5번 데이터");
 
-
 			// 삭제
 			linkedList.Remove("1번 데이터");
 			linkedList.Remove(node3);

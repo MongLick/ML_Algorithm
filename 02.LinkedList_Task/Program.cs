@@ -9,16 +9,30 @@
 
 		static void Main(string[] args)
 		{
+			LinkedList<int> linkedList = new LinkedList<int>();
 			Console.WriteLine("숫자를 입력해주세요");
-			int key = int.Parse(Console.ReadLine());
-			if(key < 0)
+			Console.WriteLine("끝내고 싶으면 0을 눌러주세요");
+			do
 			{
-				
-			}
-			else 
-			{
-
-			}
+				int key = int.Parse(Console.ReadLine());
+				if (key < 0)
+				{
+					linkedList.AddFirst(key);
+				}
+				else if(key > 0)
+				{
+					linkedList.AddLast(key);
+				}
+				else
+				{
+					break;
+				}
+				foreach (int item in linkedList)
+				{
+					Console.Write($"{item}");
+				}
+				Console.WriteLine();
+			}while (true);
 		}
 	}
 }
