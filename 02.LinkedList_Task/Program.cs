@@ -25,7 +25,7 @@
 				}
 				else
 				{
-					break;
+					break; // 반복문종료
 				}
 				foreach (int item in linkedList)
 				{
