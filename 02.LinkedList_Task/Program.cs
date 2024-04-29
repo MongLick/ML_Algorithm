@@ -7,6 +7,12 @@
 		// 음수&양수를 반으로 나누는 연결리스트 구현
 		// 입력 받을 때마다 처음부터 끝까지 출력 진행
 
+		// 요세푸스 문제는 다음과 같다.
+		// 1번부터 N번까지 N명의 사람이 원을 이루면서 앉아있고, 양의 정수 K(≤ N)가 주어진다.이제 순서대로 K번째 사람을 제거한다.
+		// 한 사람이 제거되면 남은 사람들로 이루어진 원을 따라 이 과정을 계속해 나간다. 이 과정은 N0명의 사람이 모두 제거될 때까지 계속된다.
+		// 원에서 사람들이 제거되는 순서를 (N, K)-요세푸스 순열이라고 한다.예를 들어 (7, 3)-요세푸스 순열은<3, 6, 2, 7, 5, 1, 4>이다.
+		// N과 K가 주어지면 (N, K)-요세푸스 순열을 구하는 프로그램을 작성하시오.
+
 		static void Main(string[] args)
 		{
 			LinkedList<int> linkedList = new LinkedList<int>();
@@ -19,7 +25,7 @@
 				{
 					linkedList.AddFirst(key);
 				}
-				else if(key > 0)
+				else if (key > 0)
 				{
 					linkedList.AddLast(key);
 				}
@@ -32,7 +38,33 @@
 					Console.Write($"{item}");
 				}
 				Console.WriteLine();
-			}while (true);
+			} while (true);
+
+			// 요세푸스 순열 문제
+			LinkedList<int> list = new LinkedList<int>();
+			int n = 0;
+			int k = 0;
+
+			do
+			{
+				Console.WriteLine("0보다 낮은 숫자를 입력하면 안 됩니다.");
+				Console.WriteLine("총 숫자를 입력해주세요");
+				n = int.Parse(Console.ReadLine());
+				Console.WriteLine("몇번 째 숫자 마다 제거를 할지 입력해주세요");
+				k = int.Parse(Console.ReadLine());
+			} while (n <= 0 || k <= 0);
+
+			for(int i = 1; i <= n; i++)
+			{
+				list.AddLast(i);
+			}
+
+			while(n == 0)
+			{
+
+			}
+
+
 		}
 	}
 }
