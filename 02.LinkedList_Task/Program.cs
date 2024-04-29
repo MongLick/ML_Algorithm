@@ -42,29 +42,63 @@
 
 			// 요세푸스 순열 문제
 			LinkedList<int> list = new LinkedList<int>();
+
 			int n = 0;
 			int k = 0;
 
 			do
 			{
-				Console.WriteLine("0보다 낮은 숫자를 입력하면 안 됩니다.");
+				Console.WriteLine("1보다 낮은 숫자를 입력하면 안 됩니다.");
 				Console.WriteLine("총 숫자를 입력해주세요");
 				n = int.Parse(Console.ReadLine());
 				Console.WriteLine("몇번 째 숫자 마다 제거를 할지 입력해주세요");
 				k = int.Parse(Console.ReadLine());
 			} while (n <= 0 || k <= 0);
 
-			for(int i = 1; i <= n; i++)
+			// 요세푸스 순열 생성
+			List<int> josephus = Josephus(n, k);
+
+			// 요세푸스 순열 출력
+			Console.WriteLine("요세푸스 순열:");
+			foreach (int num in josephus)
+			{
+				Console.Write(num + " ");
+			}
+		}
+
+		// 요세푸스 순열을 생성하는 함수
+		static List<int> Josephus(int n, int k)
+		{
+			LinkedList<int> list = new LinkedList<int>();
+
+			// 원형 연결 리스트 초기화
+			for (int i = 1; i <= n; i++)
 			{
 				list.AddLast(i);
 			}
 
-			while(n == 0)
-			{
+			List<int> josephus = new List<int>();
 
+			LinkedListNode<int> current = list.First;
+
+			while (list.Count > 0)
+			{
+				// k번째 노드까지 이동
+				for (int i = 1; i < k; i++)
+				{
+					current = current.Next ?? list.First;
+				}
+
+				// 현재 노드의 값을 요세푸스 순열에 추가하고 다음 노드 기억
+				josephus.Add(current.Value);
+				LinkedListNode<int> next = current.Next ?? list.First;
+
+				// 현재 노드 제거
+				list.Remove(current);
+				current = next;
 			}
 
-
+			return josephus;
 		}
 	}
 }
