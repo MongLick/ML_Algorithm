@@ -64,6 +64,35 @@
 			{
 				Console.Write(num + " ");
 			}
+			Console.WriteLine();
+			// 밑은 교수님 풀이
+
+			LinkedList<int> linkList = new LinkedList<int>();
+			int n1 = 7;
+			int k1 = 3;
+
+			for(int i = 1; i <= n1; i++)
+			{
+				linkList.AddLast(i);
+			}
+
+			while(linkList.Count > 0)
+			{
+				for(int i = 1; i <= k1; i++)
+				{
+					LinkedListNode<int> node = linkList.First;
+					if(i == k1)
+					{
+						linkList.Remove(node);
+						Console.WriteLine($"{node.Value} ");
+					}
+					else
+					{
+						linkList.Remove(node);
+						linkList.AddLast(node);
+					}
+				}
+			}
 		}
 
 		// 요세푸스 순열을 생성하는 함수
@@ -100,7 +129,7 @@
 
 			return josephus;
 
-			// 다른 풀이도 해볼 것
+			
 		}
 	}
 }
