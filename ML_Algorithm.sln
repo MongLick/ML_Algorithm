@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "04.Queue, Stack_Task", "04.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "05.BinarySearchTree", "05.BinarySearchTree\05.BinarySearchTree.csproj", "{E033A2DB-044C-4AC8-9C39-A0DD9175122A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05.BinartSearchTree_Task", "05.BinartSearchTree_Task\05.BinartSearchTree_Task.csproj", "{1190282F-1155-49A5-93F7-F8E81C72160A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "05.BinarySearchTree_Task", "05.BinartSearchTree_Task\05.BinarySearchTree_Task.csproj", "{1190282F-1155-49A5-93F7-F8E81C72160A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
