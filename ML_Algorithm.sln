@@ -27,7 +27,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "06.Heap_Task", "06.Heap_Tas
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "07.HashTable", "07.HashTable\07.HashTable.csproj", "{D2996304-2AA6-4770-8D08-B42B4BB0DE06}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "07.HashTable_Task", "07.HashTable_Task\07.HashTable_Task.csproj", "{D8D08BA5-15F7-4D68-BD26-3AB3F5F7AD94}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "07.HashTable_Task", "07.HashTable_Task\07.HashTable_Task.csproj", "{D8D08BA5-15F7-4D68-BD26-3AB3F5F7AD94}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "08.DesignTechnique", "08.DesignTechnique\08.DesignTechnique.csproj", "{E240624C-04AE-4095-8859-845864DA0B24}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,6 +89,10 @@ Global
 		{D8D08BA5-15F7-4D68-BD26-3AB3F5F7AD94}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D8D08BA5-15F7-4D68-BD26-3AB3F5F7AD94}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D8D08BA5-15F7-4D68-BD26-3AB3F5F7AD94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E240624C-04AE-4095-8859-845864DA0B24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E240624C-04AE-4095-8859-845864DA0B24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E240624C-04AE-4095-8859-845864DA0B24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E240624C-04AE-4095-8859-845864DA0B24}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
