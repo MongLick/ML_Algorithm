@@ -39,7 +39,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "10.Searching", "10.Searchin
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "11.ShortesPath", "11.ShortesPath\11.ShortesPath.csproj", "{AB2C44D2-3754-4FB8-9A57-7D3AB04590FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "12.PathFinding", "12.PathFinding\12.PathFinding.csproj", "{04BA58A4-437A-4374-B90D-E525B549F225}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "12.PathFinding", "12.PathFinding\12.PathFinding.csproj", "{04BA58A4-437A-4374-B90D-E525B549F225}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "99.LastCheck", "99.LastCheck\99.LastCheck.csproj", "{A5519800-D2C1-4A1D-8D62-509F2724A283}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -123,6 +125,10 @@ Global
 		{04BA58A4-437A-4374-B90D-E525B549F225}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{04BA58A4-437A-4374-B90D-E525B549F225}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{04BA58A4-437A-4374-B90D-E525B549F225}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5519800-D2C1-4A1D-8D62-509F2724A283}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5519800-D2C1-4A1D-8D62-509F2724A283}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5519800-D2C1-4A1D-8D62-509F2724A283}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5519800-D2C1-4A1D-8D62-509F2724A283}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
