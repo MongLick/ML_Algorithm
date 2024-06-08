@@ -689,6 +689,132 @@
 			{
 				Console.WriteLine(value);
 			}
+
+			// 알고리즘 설계기법
+			// 어떤 문제를 해결하는 과정에서 해당 문제의 답을 효과적으로 찾아가기 위한 전략과 접근 방식이다
+			// 문제를 풀 때 어떤 알고리즘 설계 기법을 쓰는지에 따라 효율성이 막대하게 차이난다.
+			// 문제의 성질과 조겐에 따라 알맞은 알고리즘 설계기법을 선택하여 사용한다.
+
+			// 재귀
+			// 어떠한 것을 정의할 때 자기 자신을 참조하는 것
+			// 함수를 정의할 때 자기자신을 이용하여 표현하는 방법
+
+			// 재귀함수 조건
+			// 1. 함수내용중 자기자신함수를 다시 호츌해야한다.
+			// 2. 종료조건이 있어야 한다.
+
+			// 재귀함수 사용
+			// Factorial : 정수를 1이 될 때까지 차감하며 곱한 값
+			// x! = x * (x-1)!;
+			// ex) 5! = 5 * 4!
+			// = 5 * 4 * 3!
+			// = 5 * 4 * 3 * 2!
+			// = 5 * 4 * 3 * 2 * 1!
+			// = 5 * 4 * 3 * 2 * 1
+
+			int Factorial(int x)
+			{
+				if (x == 1)
+				{
+					return 1;
+				}
+				else
+				{
+					return x * Factorial(x - 1);
+				}
+			}
+
+			Console.WriteLine(Factorial(3));
+
+			// 백트래킹
+			// 모든 경우의 수를 전부 고려하는 알고리즘
+			// 후보해를 검증 도중 해가 아닌 경우 되돌아가서 다시 해를 찾아가는 기법
+			// 예시 - 순열
+
+			List<int> list6 = new List<int>();
+			
+			void Permutation(int n, int r, int count = 0)
+			{
+				if(count == r)
+				{
+					Console.WriteLine(string.Join(' ', list6));
+					return;
+				}
+
+				for(int i = 1; i <= n; i++)
+				{
+					if(list6.Contains(i))
+					{
+						continue;
+					}
+
+					list6.Add(i);
+					Permutation(n, r, i + 1);
+					list6.RemoveAt(list6.Count -1);
+				}
+			}
+
+			// 분할정복
+			// 큰 문제를 작은 문제로 나눠서 푸는 하향식 접근 방식
+			// 분할을 통해서 해결하기 쉬운 작은 문제로 나눈 후 정복한 후 병합하는 과정이다
+
+			int Pow(int x, int n)
+			{
+				if(n == 1)
+				{
+					return x;
+				}
+
+				int halfPow = Pow(x, n / 2);
+				if(n % 2 == 0)
+				{
+					return halfPow * halfPow;
+				}
+				else
+				{
+					return halfPow * halfPow * x;
+				}
+			}
+
+			// 동적 계획법
+			// 작은 문제의 해답을 큰 문제의 해당의 부분으로 이용하는 상향식 접근 방식
+			// 주어진 문제를 해결하기 위해 부분 문제에 대한 답을 계속적으로 활용해 나가는 기법이다.
+
+			// 예시 - 피보나치 수열
+			int Fibonachi(int x)
+			{
+				int[] fibonachi = new int[x + 1];
+				fibonachi[1] = 1;
+				fibonachi[2] = 1;
+				
+				for(int i = 3; i <= x; i++)
+				{
+					fibonachi[i] = fibonachi[i - 1] + fibonachi[i - 2];
+				}
+
+				return fibonachi[x];
+			}
+
+			// 탐욕 알고리즘
+			// 문제를 해결하는데 사용되는 근시안(짧은시야)적 방법
+			// 문제를 직면한 당시에 당장 최적인 답을 선택하는 과정을 반복
+			// 단, 반드시 최적의 해를 구해준다는 보장이 없음
+
+			// 예시 자판기 거스름돈
+
+			void CoinMachine(int money)
+			{
+				int[] coinType = { 500, 100, 50, 10, 5, 1 };
+
+				foreach(int coin in coinType)
+				{
+					while(money <= coin)
+					{
+						Console.WriteLine(coin);
+						money -= coin;
+					}
+				}
+			}
 		}
 
 		public class Book
