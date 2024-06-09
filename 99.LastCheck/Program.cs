@@ -1,4 +1,6 @@
-﻿namespace _99.LastCheck
+﻿using System.Security.Cryptography.X509Certificates;
+
+namespace _99.LastCheck
 {
 	internal class Program
 	{
@@ -814,6 +816,56 @@
 						money -= coin;
 					}
 				}
+			}
+
+			// 선택정렬
+			// 데이터 중 가장 작은 값부터 하나씩 서낵하여 정렬
+			// 시간 복자도 n2 공간복잡도 1 안정정렬 0
+
+			static void SelectionSort(IList<int> list)
+			{
+				for (int i =0; i < list.Count; i++)
+				{
+					int minIndex = i;
+					for(int j = i; j < list.Count; j++)
+					{
+						if(list[j] < list[minIndex])
+						{
+							minIndex = j;
+						}
+					}
+					Swap(list, i, minIndex);
+				}
+			}
+
+			// 삽입정렬
+			// 데이터를 하나씩 꺼내어 정렬된 자료중 적합한 위치에 삽입하여 정렬
+			// 시간 복자도 n2 공간 복잡도 1 안정정렬 0
+			
+			static void InsertionSort(IList<int> list)
+			{
+				for(int i = 1; i < list.Count; i++)
+				{
+					for(int j = i; j > 0; j++)
+					{
+						if(list[j -1] > list[j])
+						{
+							Swap(list, j - 1, j);
+						}
+						else
+						{
+							break;
+						}
+					}
+				}
+			}
+
+
+			static void Swap(IList<int> list, int left, int right)
+			{
+				int temp = list[left];
+				list[left] = list[right];
+				list[right] = temp;
 			}
 		}
 
