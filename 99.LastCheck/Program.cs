@@ -31,7 +31,7 @@ namespace _99.LastCheck
 			// 빈 공간에 데이터를 추가한다.
 
 			// 리스트는 접근은 1 탐색은 n 삽입은 n 삭제는 n
-			
+
 			List<string> list = new List<string>();
 			List<int> list1 = new List<int>();
 			list1.Capacity = 10000; // 배열의 크기를 정해주는 것
@@ -57,7 +57,7 @@ namespace _99.LastCheck
 			// 삭제
 			list.Remove("1번 데이터");
 			list.RemoveAt(1); // 인덱스를 가지고 지우는 것 1번째 인덱스를 지우는 것
-			list.RemoveAt(list.Count -1);
+			list.RemoveAt(list.Count - 1);
 
 			// 접근
 			list[0] = "데이터0";
@@ -65,7 +65,7 @@ namespace _99.LastCheck
 
 			// 탐색
 			int indexof = list.IndexOf("2번 데이터");
-			for(int i = 0; i < list.Count; i++)
+			for (int i = 0; i < list.Count; i++)
 			{
 				list[i] = value;
 			}
@@ -113,7 +113,7 @@ namespace _99.LastCheck
 			LinkedListNode<string> node4 = linkedList.AddBefore(node0, "4번 데이터");
 			LinkedListNode<string> node5 = linkedList.AddAfter(node0, "5번 데이터");
 
-			foreach(string linkedListString in linkedList)
+			foreach (string linkedListString in linkedList)
 			{
 				Console.WriteLine(linkedListString);
 			}
@@ -172,7 +172,7 @@ namespace _99.LastCheck
 			iter.Reset();
 
 			iter.Reset();
-			while(iter.MoveNext())
+			while (iter.MoveNext())
 			{
 				Console.WriteLine(iter.Current);
 			}
@@ -184,7 +184,7 @@ namespace _99.LastCheck
 			List<int> list4 = new List<int>();
 			LinkedList<int> linkedList4 = new LinkedList<int>();
 
-			for(int i = 0; i < size; i++)
+			for (int i = 0; i < size; i++)
 			{
 				list4.Add(i);
 				linkedList4.AddLast(i);
@@ -193,12 +193,12 @@ namespace _99.LastCheck
 			// 반복기 사용이 없는 경우
 			// 자료구조 내 데이트를 순회하기 위해 자료구조 내부구조를 이용해야 한다.
 
-			for(int i = 0; i < list4.Count; i++)
+			for (int i = 0; i < list4.Count; i++)
 			{
 				Console.WriteLine(list4[i]);
 			}
 
-			for(LinkedListNode<int> node6 = linkedList4.First; node6 != null; node6 = node6.Next)
+			for (LinkedListNode<int> node6 = linkedList4.First; node6 != null; node6 = node6.Next)
 			{
 				Console.WriteLine(node6.Value);
 			}
@@ -206,12 +206,12 @@ namespace _99.LastCheck
 			// 반복기를 사용하는 경우
 			// 자료구조 내 데이트를 순회하기 위해 반복기 사용만을 필요하다.
 
-			for(IEnumerator<int> iter1 = list4.GetEnumerator(); iter1.MoveNext();)
+			for (IEnumerator<int> iter1 = list4.GetEnumerator(); iter1.MoveNext();)
 			{
 				Console.WriteLine(iter.Current);
 			}
 
-			for(IEnumerator<int> iter1 = linkedList4.GetEnumerator(); iter1.MoveNext();)
+			for (IEnumerator<int> iter1 = linkedList4.GetEnumerator(); iter1.MoveNext();)
 			{
 				Console.WriteLine(iter1.Current);
 			}
@@ -228,7 +228,7 @@ namespace _99.LastCheck
 			Queue<int> queue = new Queue<int>();
 			SortedSet<int> set = new SortedSet<int>();
 
-			for(int i = 0; i < size1; i++)
+			for (int i = 0; i < size1; i++)
 			{
 				array[i] = i;
 				list5.Add(i);
@@ -247,7 +247,7 @@ namespace _99.LastCheck
 				yield return 4;
 			}
 
-			foreach(int element in array)
+			foreach (int element in array)
 			{
 				Console.WriteLine(element);
 			}
@@ -283,24 +283,24 @@ namespace _99.LastCheck
 
 			Stack<int> stack1 = new Stack<int>();
 
-			for(int i = 0; i < 5; i++)
+			for (int i = 0; i < 5; i++)
 			{
 				stack1.Push(i);
 			}
 
-			Console.WriteLine(stack1.Peek()) ;
+			Console.WriteLine(stack1.Peek());
 
-			for(int i = 0; i < 3; i++)
+			for (int i = 0; i < 3; i++)
 			{
 				Console.WriteLine(stack1.Pop());
 			}
 
-			for(int i = 5; i < 10; i++)
+			for (int i = 5; i < 10; i++)
 			{
 				stack1.Push(i);
 			}
 
-			while(stack1.Count > 0)
+			while (stack1.Count > 0)
 			{
 				Console.WriteLine(stack1.Pop());
 			}
@@ -349,28 +349,28 @@ namespace _99.LastCheck
 
 			Queue<int> queue1 = new Queue<int>();
 
-			for(int i = 0; i < 5; i++)
+			for (int i = 0; i < 5; i++)
 			{
 				queue1.Enqueue(i);
 			}
 
 			Console.WriteLine(queue.Peek());
 
-			for(int i = 0; i < 3; i ++)
+			for (int i = 0; i < 3; i++)
 			{
 				Console.WriteLine(queue1.Dequeue());
 			}
 
 			Console.WriteLine(queue1.Peek());
 
-			for(int i = 5; i < 10; i++)
+			for (int i = 5; i < 10; i++)
 			{
 				queue1.Enqueue(i);
 			}
 
 			Console.WriteLine(queue.Peek());
 
-			while(queue1.Count > 0)
+			while (queue1.Count > 0)
 			{
 				Console.WriteLine(queue1.Dequeue());
 			}
@@ -444,7 +444,7 @@ namespace _99.LastCheck
 			// 탐색
 			sortedSet.Contains(6);
 
-			foreach(int value1 in sortedSet)
+			foreach (int value1 in sortedSet)
 			{
 				Console.WriteLine(value1);
 			}
@@ -470,12 +470,12 @@ namespace _99.LastCheck
 			string str = sortedDictionary["BookA"].ToString();
 
 			// 순서대로 출력시 정렬된 결과 확인
-			foreach(string key in sortedDictionary.Keys)
+			foreach (string key in sortedDictionary.Keys)
 			{
 				Console.WriteLine(key);
 			}
 
-			foreach(Book value1 in sortedDictionary.Values)
+			foreach (Book value1 in sortedDictionary.Values)
 			{
 				Console.WriteLine(value1);
 			}
@@ -560,7 +560,7 @@ namespace _99.LastCheck
 			pq1.Enqueue("Data3", 3);
 			pq1.Enqueue("Data9", 9);
 
-			for(int i = 0; i < 3; i++)
+			for (int i = 0; i < 3; i++)
 			{
 				Console.WriteLine(pq1.Dequeue());
 			}
@@ -570,7 +570,7 @@ namespace _99.LastCheck
 			pq1.Enqueue("Data6", 6);
 			pq1.Enqueue("Data8", 8);
 
-			while(pq1.Count > 0)
+			while (pq1.Count > 0)
 			{
 				Console.WriteLine(pq1.Dequeue());
 			}
@@ -584,7 +584,7 @@ namespace _99.LastCheck
 			pq2.Enqueue("Data3", -3);
 			pq2.Enqueue("Data9", -9);
 
-			for(int i = 0; i < 3; i++)
+			for (int i = 0; i < 3; i++)
 			{
 				Console.WriteLine(pq2.Dequeue());
 			}
@@ -594,7 +594,7 @@ namespace _99.LastCheck
 			pq2.Enqueue("Data6", -6);
 			pq2.Enqueue("Data8", -8);
 
-			while(pq2.Count > 0)
+			while (pq2.Count > 0)
 			{
 				Console.WriteLine(pq2.Dequeue());
 			}
@@ -658,7 +658,7 @@ namespace _99.LastCheck
 			// 탐색
 			hashSet.Contains(3); // 포함하고 있는지
 
-			foreach(int value1 in hashSet)
+			foreach (int value1 in hashSet)
 			{
 				Console.WriteLine(value1);
 			}
@@ -682,12 +682,12 @@ namespace _99.LastCheck
 			dictionary.TryGetValue("BookE", out Book book1); // 탐색 시도
 			string str1 = dictionary["BookA"].ToString();
 
-			foreach(string key in dictionary.Keys)
+			foreach (string key in dictionary.Keys)
 			{
 				Console.WriteLine(key);
 			}
 
-			foreach(Book value1 in dictionary.Values)
+			foreach (Book value1 in dictionary.Values)
 			{
 				Console.WriteLine(value);
 			}
@@ -734,25 +734,25 @@ namespace _99.LastCheck
 			// 예시 - 순열
 
 			List<int> list6 = new List<int>();
-			
+
 			void Permutation(int n, int r, int count = 0)
 			{
-				if(count == r)
+				if (count == r)
 				{
 					Console.WriteLine(string.Join(' ', list6));
 					return;
 				}
 
-				for(int i = 1; i <= n; i++)
+				for (int i = 1; i <= n; i++)
 				{
-					if(list6.Contains(i))
+					if (list6.Contains(i))
 					{
 						continue;
 					}
 
 					list6.Add(i);
 					Permutation(n, r, i + 1);
-					list6.RemoveAt(list6.Count -1);
+					list6.RemoveAt(list6.Count - 1);
 				}
 			}
 
@@ -762,13 +762,13 @@ namespace _99.LastCheck
 
 			int Pow(int x, int n)
 			{
-				if(n == 1)
+				if (n == 1)
 				{
 					return x;
 				}
 
 				int halfPow = Pow(x, n / 2);
-				if(n % 2 == 0)
+				if (n % 2 == 0)
 				{
 					return halfPow * halfPow;
 				}
@@ -788,8 +788,8 @@ namespace _99.LastCheck
 				int[] fibonachi = new int[x + 1];
 				fibonachi[1] = 1;
 				fibonachi[2] = 1;
-				
-				for(int i = 3; i <= x; i++)
+
+				for (int i = 3; i <= x; i++)
 				{
 					fibonachi[i] = fibonachi[i - 1] + fibonachi[i - 2];
 				}
@@ -808,9 +808,9 @@ namespace _99.LastCheck
 			{
 				int[] coinType = { 500, 100, 50, 10, 5, 1 };
 
-				foreach(int coin in coinType)
+				foreach (int coin in coinType)
 				{
-					while(money <= coin)
+					while (money <= coin)
 					{
 						Console.WriteLine(coin);
 						money -= coin;
@@ -818,55 +818,94 @@ namespace _99.LastCheck
 				}
 			}
 
-			// 선택정렬
-			// 데이터 중 가장 작은 값부터 하나씩 서낵하여 정렬
-			// 시간 복자도 n2 공간복잡도 1 안정정렬 0
 
-			static void SelectionSort(IList<int> list)
+
+			Random random = new Random();
+			int count = 20;
+
+			List<int> selectionList = new List<int>(count);
+			List<int> insertionList = new List<int>(count);
+			List<int> bubbleList = new List<int>(count);
+			List<int> mergeList = new List<int>(count);
+			List<int> quickList = new List<int>(count);
+			List<int> heapList = new List<int>(count);
+			List<int> introList = new List<int>(count);
+
+			Console.WriteLine("랜덤 데이터 : ");
+			for (int i = 0; i < count; i++)
 			{
-				for (int i =0; i < list.Count; i++)
-				{
-					int minIndex = i;
-					for(int j = i; j < list.Count; j++)
-					{
-						if(list[j] < list[minIndex])
-						{
-							minIndex = j;
-						}
-					}
-					Swap(list, i, minIndex);
-				}
-			}
+				int rand = random.Next() % 100;
+				Console.Write($"{rand,3}");
 
-			// 삽입정렬
-			// 데이터를 하나씩 꺼내어 정렬된 자료중 적합한 위치에 삽입하여 정렬
-			// 시간 복자도 n2 공간 복잡도 1 안정정렬 0
-			
-			static void InsertionSort(IList<int> list)
+				selectionList.Add(rand);
+				insertionList.Add(rand);
+				bubbleList.Add(rand);
+				heapList.Add(rand);
+				mergeList.Add(rand);
+				quickList.Add(rand);
+				introList.Add(rand);
+			}
+			Console.WriteLine();
+
+			Console.WriteLine("선택 정렬 결과 : ");
+			Sorting.SelectionSort(selectionList);
+			foreach (int i in selectionList)
 			{
-				for(int i = 1; i < list.Count; i++)
-				{
-					for(int j = i; j > 0; j++)
-					{
-						if(list[j -1] > list[j])
-						{
-							Swap(list, j - 1, j);
-						}
-						else
-						{
-							break;
-						}
-					}
-				}
+				Console.Write($"{i,3}");
 			}
+			Console.WriteLine();
 
-
-			static void Swap(IList<int> list, int left, int right)
+			Console.WriteLine("삽입 정렬 결과 : ");
+			Sorting.InsertionSort(insertionList);
+			foreach (int i in insertionList)
 			{
-				int temp = list[left];
-				list[left] = list[right];
-				list[right] = temp;
+				Console.Write($"{i,3}");
 			}
+			Console.WriteLine();
+
+			Console.WriteLine("버블 정렬 결과 : ");
+			Sorting.BubbleSort(bubbleList);
+			foreach (int i in bubbleList)
+			{
+				Console.Write($"{i,3}");
+			}
+			Console.WriteLine();
+
+
+			Console.WriteLine("합병 정렬 결과 : ");
+			Sorting.MergeSort(mergeList);
+			foreach (int i in mergeList)
+			{
+				Console.Write($"{i,3}");
+			}
+			Console.WriteLine();
+
+
+			Console.WriteLine("퀵 정렬 결과 : ");
+			Sorting.QuickSort(quickList);
+			foreach (int i in quickList)
+			{
+				Console.Write($"{i,3}");
+			}
+			Console.WriteLine();
+
+
+			Console.WriteLine("힙 정렬 결과 : ");
+			Sorting.HeapSort(heapList);
+			foreach (int i in heapList)
+			{
+				Console.Write($"{i,3}");
+			}
+			Console.WriteLine();
+
+
+			Console.WriteLine("인트로 정렬 결과 : ");
+			introList.Sort();
+			foreach (int i in introList)
+			{
+				Console.Write($"{i,3}");
+			}
+			Console.WriteLine();
 		}
 
 		public class Book
@@ -887,5 +926,288 @@ namespace _99.LastCheck
 				return $"{name}, {writer}, {pages}";
 			}
 		}
-	}
+
+		public class Sorting
+		{
+			// 선택정렬
+			// 데이터 중 가장 작은 값부터 하나씩 선택하여 정렬
+			// 시간 복자도 n2 공간복잡도 1 안정정렬 0
+
+			public static void SelectionSort(IList<int> list)
+			{
+				for (int i = 0; i < list.Count; i++)
+				{
+					int minIndex = i;
+					for (int j = i; j < list.Count; j++)
+					{
+						if (list[j] < list[minIndex])
+						{
+							minIndex = j;
+						}
+					}
+					Swap(list, i, minIndex);
+				}
+			}
+
+			// 삽입정렬
+			// 데이터를 하나씩 꺼내어 정렬된 자료중 적합한 위치에 삽입하여 정렬
+			// 시간 복자도 n2 공간 복잡도 1 안정정렬 0
+
+			public static void InsertionSort(IList<int> list)
+			{
+				for (int i = 1; i < list.Count; i++)
+				{
+					for (int j = i; j > 0; j--)
+					{
+						if (list[j - 1] > list[j])
+						{
+							Swap(list, j - 1, j);
+						}
+						else
+						{
+							break;
+						}
+					}
+				}
+			}
+
+			// 버블정렬
+			// 서로 인접한 데이터를 비교하여 정렬
+			// 시간복잡도 n2 공간복잡도 1 안정정렬 - 0
+
+			public static void BubbleSort(IList<int> list)
+			{
+				for (int i = 1; i < list.Count; i++)
+				{
+					for (int j = 0; j < list.Count - i; j++)
+					{
+						if (list[j] > list[j + 1])
+						{
+							Swap(list, j, j + 1);
+						}
+					}
+				}
+			}
+
+			// 병합정렬
+			// 데이터를 2분할하여 정렬 후 합병
+			// 데이터 갯수만큼의 추가적인 메모리가 필요
+			// 시간복잡도 nlogn 공간복잡도 n 안정정렬 0
+
+			public static void MergeSort(IList<int> list) => MergeSort(list, 0, list.Count - 1);
+
+			public static void MergeSort(IList<int> list, int start, int end)
+			{
+				if (start == end)
+				{
+					return;
+				}
+
+				int mid = (start + end) / 2;
+				MergeSort(list, start, mid);
+				MergeSort(list, mid + 1, end);
+				Merge(list, start, mid, end);
+			}
+
+			private static void Merge(IList<int> list, int start, int mid, int end)
+			{
+				List<int> sortedList = new List<int>();
+				int leftIndex = start;
+				int rightIndex = mid + 1;
+
+				while (leftIndex <= mid && rightIndex <= end)
+				{
+					if (list[leftIndex] < list[rightIndex])
+					{
+						sortedList.Add(list[leftIndex++]);
+					}
+					else
+					{
+						sortedList.Add(list[rightIndex++]);
+					}
+				}
+
+				if (leftIndex > mid)
+				{
+					for (int i = rightIndex; i <= end; i++)
+					{
+						sortedList.Add(list[i]);
+					}
+				}
+				else // if (rightIndex > end)
+				{
+					for (int i = leftIndex; i <= mid; i++)
+					{
+						sortedList.Add(list[i]);
+					}
+				}
+
+				for (int i = 0; i < sortedList.Count; i++)
+				{
+					list[start + i] = sortedList[i];
+				}
+			}
+
+			// 퀵정렬
+			// 하나의 피벗을 기준으로 작은값과 큰값을 2분할하여 정렬
+			// 최악의 경우(피벗이 최소값 또는 최대값)인 경우 시간복잡도 n2
+			// 시간복잡도 - 평균 nlogn 최악 n2
+			// 공간복잡도 1
+			// 안정정렬 x
+
+			public static void QuickSort(IList<int> list) => QuickSort(list, 0, list.Count - 1);
+
+			public static void QuickSort(IList<int> list, int start, int end)
+			{
+				if (start >= end)
+				{
+					return;
+				}
+
+				int pivot = start;
+				int left = pivot + 1;
+				int right = end;
+
+				while (left <= right)
+				{
+					while (list[left] <= list[pivot] && left < right)
+					{
+						left++;
+					}
+					while (list[right] > list[pivot] && left <= right)
+					{
+						right--;
+					}
+
+					if (left < right)
+					{
+						Swap(list, left, right);
+					}
+					else
+					{
+						Swap(list, pivot, right);
+						break;
+					}
+				}
+
+				QuickSort(list, start, right - 1);
+				QuickSort(list, right + 1, end);
+			}
+
+
+			// 힙정렬
+			// 힙을 이용하여 우선순위가 가장 높은 요소가 가장 마지막 요소와 교체된 후 제거되는 방법을 이용
+			// 배열에서 연속적인 데이터를 사용하지 않기 때문에 캐시 메모리를 효율적으로 사용할 수 없어 상대적으로 느림
+			// 시간복잡도 nlogn
+			// 공간복잡도 1
+			// 안정정렬 x
+
+			public static void HeapSort(IList<int> list)
+			{
+				MakeHeap(list);
+
+				for (int i = list.Count - 1; i > 0; i--)
+				{
+					Swap(list, 0, i);
+					Heapify(list, 0, i);
+				}
+			}
+
+			private static void MakeHeap(IList<int> list)
+			{
+				for (int i = list.Count / 2 - 1; i >= 0; i--)
+				{
+					Heapify(list, i, list.Count);
+				}
+			}
+
+			private static void Heapify(IList<int> list, int index, int size)
+			{
+				int left = index * 2 + 1;
+				int right = index * 2 + 2;
+				int max = index;
+				if (left < size && list[left] > list[max])
+				{
+					max = left;
+				}
+				if (right < size && list[right] > list[max])
+				{
+					max = right;
+				}
+
+				if (max != index)
+				{
+					Swap(list, index, max);
+					Heapify(list, max, size);
+				}
+			}
+
+			private static void Swap(IList<int> list, int left, int right)
+			{
+				int temp = list[left];
+				list[left] = list[right];
+				list[right] = temp;
+			}
+		}
+
+		public class Graph
+		{
+			// 그래프
+			// 정점의 모음과 이 정점을 잇는 간선의 모음의 결합
+			// 한 노드에서 출발하여 다시 자기 자신의 노드로 돌아오는 순환구조를 가졌다
+			// 간선의 방향성에 따라 단 방향 그래프, 양 방향 그래프가 있다.
+			// 간선의 가중치에 따라 연결 그래프, 가중치 그래프가 있다.
+
+			// 인접행렬 그래프
+			// 그래프 내의 각 정점의 인접 관계를 나타내는 행렬
+			// 2차원 배열을 [출발정점, 도착정점]으로 표현한다.
+			// 장점 : 인접여부 접근이 빠르다.
+			// 단점 : 메모리 사용량이 많다.
+
+			// 예시 양방향 연결 그래프
+			bool[,] matrixGraph1 = new bool[5, 5]
+			{
+				{ false, false, false, false,  true },
+				{ false, false,  true, false, false },
+				{ false,  true, false,  true, false },
+				{ false, false,  true, false,  true },
+				{  true, false, false,  true, false },
+			};
+
+			const int INF = int.MaxValue;
+
+			// 예시 - 단방향 가중치 그래프(단절은 최대값으로 표현한다.)
+			int[,] matrixGraph2 = new int[5, 5]
+			{
+				{   0, 132, INF, INF,  16 },
+				{  12,   0, INF, INF, INF },
+				{ INF,  38,   0, INF, INF },
+				{ INF,  12, INF,   0,  54 },
+				{ INF, INF, INF, INF,   0 },
+			};
+
+			// 인접리스트 그래프
+			// 그래프 내의 각 정점의 인접 관계를 표현하는 리스트
+			// 인접한 간선만큼 리스트에 추가하여 관리한다.
+			// 장점 : 메모리 사용량이 적다
+			// 단점 : 인접여부를 확인하기 위해 리스트 탐색이 필요하다
+
+			// 예시 
+			List<int>[] listGraph1;
+			List<(int, int)>[] listGraph2;
+			public void CreateGraph()
+			{
+				listGraph1 = new List<int>[5];
+
+				listGraph1[0].Add(1);
+				listGraph1[1].Add(0);
+				listGraph1[1].Add(3);
+				listGraph1[2].Add(0);
+				listGraph1[2].Add(1);
+				listGraph1[2].Add(4);
+				listGraph1[3].Add(1);
+				listGraph1[4].Add(3);
+			}
+		}
+	}			
 }
