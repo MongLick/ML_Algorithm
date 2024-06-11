@@ -1,9 +1,13 @@
-﻿using System.Security.Cryptography.X509Certificates;
+﻿using System.ComponentModel;
+using System.Drawing;
+using System.Security.Cryptography.X509Certificates;
 
 namespace _99.LastCheck
 {
 	internal class Program
 	{
+		const int INF = 99999;
+
 		static void Main(string[] args)
 		{
 			Console.WriteLine();
@@ -906,308 +910,851 @@ namespace _99.LastCheck
 				Console.Write($"{i,3}");
 			}
 			Console.WriteLine();
+
+			// 순차 탐색
+			int index1;
+			int index2;
+			int[] array1 = { 1, 3, 5, 7, 9, 8, 6, 4, 2, 0 };
+			Console.Write("배열 : ");
+			foreach (int i in array1)
+			{
+				Console.Write($"{i,2}");
+			}
+			Console.WriteLine();
+
+			index1 = Array.IndexOf(array1, 2);
+			index2 = Searching.SequentialSearch(array1, 2);
+			Console.WriteLine($"순차탐색 결과 위치 : {index1}");
+			Console.WriteLine($"구현한 순차탐색 결과 위치 : {index2}");
+			Console.WriteLine();
+
+			// 이진 탐색
+			index1 = Array.BinarySearch(array1, 2);
+			index2 = Searching.BinarySearch(array1, 2);
+			Console.WriteLine("정렬 전 결과");
+			Console.WriteLine($"이진탐색 결과 위치 : {index1}");
+			Console.WriteLine($"구현한 이진탐색 결과 위치 : {index2}");
+			Console.WriteLine();
+
+			Array.Sort(array1); // 이진탐색의 경우 우선 정렬이 필요하다
+			Console.Write("정렬된 배열 : ");
+			foreach (int i in array1)
+			{
+				Console.Write($"{i,2}");
+			}
+			Console.WriteLine();
+
+			index1 = Array.BinarySearch(array1, 2);
+			index2 = Searching.BinarySearch(array1, 2);
+			Console.WriteLine("정렬 후 결과");
+			Console.WriteLine($"이진탐색 결과 위치 : {index1}");
+			Console.WriteLine($"구현한 이진탐색 결과 위치 : {index2}");
+			Console.WriteLine();
+
+			bool[,] graph = new bool[8, 8]
+			{
+				{ false,  true, false, false, false, false, false, false },
+				{  true, false,  true, false, false,  true, false, false },
+				{ false,  true, false, false,  true,  true, false, false },
+				{ false, false, false, false, false,  true, false, false },
+				{ false, false,  true, false, false, false,  true,  true },
+				{ false,  true,  true,  true, false, false, false, false },
+				{ false, false, false, false,  true, false, false, false },
+				{ false, false, false, false,  true, false, false, false },
+			};
+
+			// DFS 탐색
+			Console.WriteLine("<DFS>");
+			Searching.DFS(graph, 0, out bool[] dfsVisited, out int[] dfsParents);
+			PrintGraphSearch(dfsVisited, dfsParents);
+			Console.WriteLine();
+
+			// BFS 탐색
+			Console.WriteLine("<BFS>");
+			Searching.BFS(graph, 0, out bool[] bfsVisited, out int[] bfsParents);
+			PrintGraphSearch(bfsVisited, bfsParents);
+			Console.WriteLine();
+
+			static void PrintGraphSearch(bool[] visited, int[] parents)
+			{
+				Console.WriteLine($"{"Vertex",8}{"Visit",8}{"Parent",8}");
+
+				for (int i = 0; i < visited.Length; i++)
+				{
+					Console.WriteLine($"{i,8}{visited[i],8}{parents[i],8}");
+				}
+			}
+
+			int[,] graph1 = new int[9, 9]
+			{
+				{   0, INF,   1,   7, INF, INF, INF,   5, INF},
+				{ INF,   0, INF, INF, INF,   4, INF, INF, INF},
+				{ INF, INF,   0, INF, INF, INF, INF, INF, INF},
+				{   5, INF, INF,   0, INF, INF, INF, INF, INF},
+				{ INF, INF,   9, INF,   0, INF, INF, INF,   2},
+				{   1, INF, INF, INF, INF,   0, INF,   6, INF},
+				{ INF, INF, INF, INF, INF, INF,   0, INF, INF},
+				{   1, INF, INF, INF,   4, INF, INF,   0, INF},
+				{ INF,   5, INF,   2, INF, INF, INF, INF,   0}
+			};
+
+			Dijkstra.ShortestPath(graph1, 0, out bool[] visited, out int[] distance, out int[] parents);
+			PrintDijkstra(visited, distance, parents);
+
+			bool[,] tileMap = new bool[9, 9]
+			{
+				{ false, false, false, false, false, false, false, false, false },
+				{ false,  true,  true,  true, false, false, false,  true, false },
+				{ false,  true, false,  true, false, false, false,  true, false },
+				{ false,  true, false,  true,  true,  true,  true,  true, false },
+				{ false,  true, false,  true, false,  true,  true,  true, false },
+				{ false,  true, false,  true, false,  true,  true,  true, false },
+				{ false, false, false, false, false, false, false,  true, false },
+				{ false,  true,  true,  true,  true,  true,  true,  true, false },
+				{ false, false, false, false, false, false, false, false, false },
+			};
+
+
 		}
 
-		public class Book
+		private static void PrintDijkstra(bool[] visited, int[] distance, int[] parents)
 		{
-			public string name;
-			public string writer;
-			public int pages;
+			Console.WriteLine($"{"Vertex",-12}{"Visit",-12}{"Distance",-12}{"Parent",-12}");
 
-			public Book(string name, string writer, int pages)
+			for (int i = 0; i < visited.Length; i++)
 			{
-				this.name = name;
-				this.writer = writer;
-				this.pages = pages;
-			}
+				Console.Write($"{i,-12}");
 
-			public override string ToString()
-			{
-				return $"{name}, {writer}, {pages}";
+				Console.Write($"{visited[i],-12}");
+
+				if (distance[i] >= INF)
+				{
+					Console.Write($"{"INF",-12}");
+				}
+				else
+				{
+					Console.WriteLine($"{distance[i],-12}");
+				}
+
+				Console.WriteLine($"{parents[i],-12}");
 			}
 		}
 
-		public class Sorting
+		static void PrintResult(in bool[,] tileMap, in List<Point> path)
 		{
-			// 선택정렬
-			// 데이터 중 가장 작은 값부터 하나씩 선택하여 정렬
-			// 시간 복자도 n2 공간복잡도 1 안정정렬 0
-
-			public static void SelectionSort(IList<int> list)
+			char[,] pathMap = new char[tileMap.GetLength(0), tileMap.GetLength(1)];
+			for (int y = 0; y < pathMap.GetLength(0); y++)
 			{
-				for (int i = 0; i < list.Count; i++)
+				for (int x = 0; x < pathMap.GetLength(1); x++)
 				{
-					int minIndex = i;
-					for (int j = i; j < list.Count; j++)
+					if (tileMap[y, x])
+						pathMap[y, x] = ' ';
+					else
+						pathMap[y, x] = 'X';
+				}
+			}
+
+			foreach (Point point in path)
+			{
+				pathMap[point.y, point.x] = '*';
+			}
+
+			Point start = path.First();
+			Point end = path.Last();
+			pathMap[start.y, start.x] = 'S';
+			pathMap[end.y, end.x] = 'E';
+
+			for (int i = 0; i < pathMap.GetLength(0); i++)
+			{
+				for (int j = 0; j < pathMap.GetLength(1); j++)
+				{
+					Console.Write(pathMap[i, j]);
+				}
+				Console.WriteLine();
+			}
+		}
+	}
+
+	public class Book
+	{
+		public string name;
+		public string writer;
+		public int pages;
+
+		public Book(string name, string writer, int pages)
+		{
+			this.name = name;
+			this.writer = writer;
+			this.pages = pages;
+		}
+
+		public override string ToString()
+		{
+			return $"{name}, {writer}, {pages}";
+		}
+	}
+
+	public class Sorting
+	{
+		// 선택정렬
+		// 데이터 중 가장 작은 값부터 하나씩 선택하여 정렬
+		// 시간 복자도 n2 공간복잡도 1 안정정렬 0
+
+		public static void SelectionSort(IList<int> list)
+		{
+			for (int i = 0; i < list.Count; i++)
+			{
+				int minIndex = i;
+				for (int j = i; j < list.Count; j++)
+				{
+					if (list[j] < list[minIndex])
 					{
-						if (list[j] < list[minIndex])
-						{
-							minIndex = j;
-						}
+						minIndex = j;
 					}
-					Swap(list, i, minIndex);
 				}
+				Swap(list, i, minIndex);
 			}
+		}
 
-			// 삽입정렬
-			// 데이터를 하나씩 꺼내어 정렬된 자료중 적합한 위치에 삽입하여 정렬
-			// 시간 복자도 n2 공간 복잡도 1 안정정렬 0
+		// 삽입정렬
+		// 데이터를 하나씩 꺼내어 정렬된 자료중 적합한 위치에 삽입하여 정렬
+		// 시간 복자도 n2 공간 복잡도 1 안정정렬 0
 
-			public static void InsertionSort(IList<int> list)
+		public static void InsertionSort(IList<int> list)
+		{
+			for (int i = 1; i < list.Count; i++)
 			{
-				for (int i = 1; i < list.Count; i++)
+				for (int j = i; j > 0; j--)
 				{
-					for (int j = i; j > 0; j--)
+					if (list[j - 1] > list[j])
 					{
-						if (list[j - 1] > list[j])
-						{
-							Swap(list, j - 1, j);
-						}
-						else
-						{
-							break;
-						}
-					}
-				}
-			}
-
-			// 버블정렬
-			// 서로 인접한 데이터를 비교하여 정렬
-			// 시간복잡도 n2 공간복잡도 1 안정정렬 - 0
-
-			public static void BubbleSort(IList<int> list)
-			{
-				for (int i = 1; i < list.Count; i++)
-				{
-					for (int j = 0; j < list.Count - i; j++)
-					{
-						if (list[j] > list[j + 1])
-						{
-							Swap(list, j, j + 1);
-						}
-					}
-				}
-			}
-
-			// 병합정렬
-			// 데이터를 2분할하여 정렬 후 합병
-			// 데이터 갯수만큼의 추가적인 메모리가 필요
-			// 시간복잡도 nlogn 공간복잡도 n 안정정렬 0
-
-			public static void MergeSort(IList<int> list) => MergeSort(list, 0, list.Count - 1);
-
-			public static void MergeSort(IList<int> list, int start, int end)
-			{
-				if (start == end)
-				{
-					return;
-				}
-
-				int mid = (start + end) / 2;
-				MergeSort(list, start, mid);
-				MergeSort(list, mid + 1, end);
-				Merge(list, start, mid, end);
-			}
-
-			private static void Merge(IList<int> list, int start, int mid, int end)
-			{
-				List<int> sortedList = new List<int>();
-				int leftIndex = start;
-				int rightIndex = mid + 1;
-
-				while (leftIndex <= mid && rightIndex <= end)
-				{
-					if (list[leftIndex] < list[rightIndex])
-					{
-						sortedList.Add(list[leftIndex++]);
+						Swap(list, j - 1, j);
 					}
 					else
 					{
-						sortedList.Add(list[rightIndex++]);
-					}
-				}
-
-				if (leftIndex > mid)
-				{
-					for (int i = rightIndex; i <= end; i++)
-					{
-						sortedList.Add(list[i]);
-					}
-				}
-				else // if (rightIndex > end)
-				{
-					for (int i = leftIndex; i <= mid; i++)
-					{
-						sortedList.Add(list[i]);
-					}
-				}
-
-				for (int i = 0; i < sortedList.Count; i++)
-				{
-					list[start + i] = sortedList[i];
-				}
-			}
-
-			// 퀵정렬
-			// 하나의 피벗을 기준으로 작은값과 큰값을 2분할하여 정렬
-			// 최악의 경우(피벗이 최소값 또는 최대값)인 경우 시간복잡도 n2
-			// 시간복잡도 - 평균 nlogn 최악 n2
-			// 공간복잡도 1
-			// 안정정렬 x
-
-			public static void QuickSort(IList<int> list) => QuickSort(list, 0, list.Count - 1);
-
-			public static void QuickSort(IList<int> list, int start, int end)
-			{
-				if (start >= end)
-				{
-					return;
-				}
-
-				int pivot = start;
-				int left = pivot + 1;
-				int right = end;
-
-				while (left <= right)
-				{
-					while (list[left] <= list[pivot] && left < right)
-					{
-						left++;
-					}
-					while (list[right] > list[pivot] && left <= right)
-					{
-						right--;
-					}
-
-					if (left < right)
-					{
-						Swap(list, left, right);
-					}
-					else
-					{
-						Swap(list, pivot, right);
 						break;
 					}
 				}
-
-				QuickSort(list, start, right - 1);
-				QuickSort(list, right + 1, end);
-			}
-
-
-			// 힙정렬
-			// 힙을 이용하여 우선순위가 가장 높은 요소가 가장 마지막 요소와 교체된 후 제거되는 방법을 이용
-			// 배열에서 연속적인 데이터를 사용하지 않기 때문에 캐시 메모리를 효율적으로 사용할 수 없어 상대적으로 느림
-			// 시간복잡도 nlogn
-			// 공간복잡도 1
-			// 안정정렬 x
-
-			public static void HeapSort(IList<int> list)
-			{
-				MakeHeap(list);
-
-				for (int i = list.Count - 1; i > 0; i--)
-				{
-					Swap(list, 0, i);
-					Heapify(list, 0, i);
-				}
-			}
-
-			private static void MakeHeap(IList<int> list)
-			{
-				for (int i = list.Count / 2 - 1; i >= 0; i--)
-				{
-					Heapify(list, i, list.Count);
-				}
-			}
-
-			private static void Heapify(IList<int> list, int index, int size)
-			{
-				int left = index * 2 + 1;
-				int right = index * 2 + 2;
-				int max = index;
-				if (left < size && list[left] > list[max])
-				{
-					max = left;
-				}
-				if (right < size && list[right] > list[max])
-				{
-					max = right;
-				}
-
-				if (max != index)
-				{
-					Swap(list, index, max);
-					Heapify(list, max, size);
-				}
-			}
-
-			private static void Swap(IList<int> list, int left, int right)
-			{
-				int temp = list[left];
-				list[left] = list[right];
-				list[right] = temp;
 			}
 		}
 
-		public class Graph
+		// 버블정렬
+		// 서로 인접한 데이터를 비교하여 정렬
+		// 시간복잡도 n2 공간복잡도 1 안정정렬 - 0
+
+		public static void BubbleSort(IList<int> list)
 		{
-			// 그래프
-			// 정점의 모음과 이 정점을 잇는 간선의 모음의 결합
-			// 한 노드에서 출발하여 다시 자기 자신의 노드로 돌아오는 순환구조를 가졌다
-			// 간선의 방향성에 따라 단 방향 그래프, 양 방향 그래프가 있다.
-			// 간선의 가중치에 따라 연결 그래프, 가중치 그래프가 있다.
-
-			// 인접행렬 그래프
-			// 그래프 내의 각 정점의 인접 관계를 나타내는 행렬
-			// 2차원 배열을 [출발정점, 도착정점]으로 표현한다.
-			// 장점 : 인접여부 접근이 빠르다.
-			// 단점 : 메모리 사용량이 많다.
-
-			// 예시 양방향 연결 그래프
-			bool[,] matrixGraph1 = new bool[5, 5]
+			for (int i = 1; i < list.Count; i++)
 			{
+				for (int j = 0; j < list.Count - i; j++)
+				{
+					if (list[j] > list[j + 1])
+					{
+						Swap(list, j, j + 1);
+					}
+				}
+			}
+		}
+
+		// 병합정렬
+		// 데이터를 2분할하여 정렬 후 합병
+		// 데이터 갯수만큼의 추가적인 메모리가 필요
+		// 시간복잡도 nlogn 공간복잡도 n 안정정렬 0
+
+		public static void MergeSort(IList<int> list) => MergeSort(list, 0, list.Count - 1);
+
+		public static void MergeSort(IList<int> list, int start, int end)
+		{
+			if (start == end)
+			{
+				return;
+			}
+
+			int mid = (start + end) / 2;
+			MergeSort(list, start, mid);
+			MergeSort(list, mid + 1, end);
+			Merge(list, start, mid, end);
+		}
+
+		private static void Merge(IList<int> list, int start, int mid, int end)
+		{
+			List<int> sortedList = new List<int>();
+			int leftIndex = start;
+			int rightIndex = mid + 1;
+
+			while (leftIndex <= mid && rightIndex <= end)
+			{
+				if (list[leftIndex] < list[rightIndex])
+				{
+					sortedList.Add(list[leftIndex++]);
+				}
+				else
+				{
+					sortedList.Add(list[rightIndex++]);
+				}
+			}
+
+			if (leftIndex > mid)
+			{
+				for (int i = rightIndex; i <= end; i++)
+				{
+					sortedList.Add(list[i]);
+				}
+			}
+			else // if (rightIndex > end)
+			{
+				for (int i = leftIndex; i <= mid; i++)
+				{
+					sortedList.Add(list[i]);
+				}
+			}
+
+			for (int i = 0; i < sortedList.Count; i++)
+			{
+				list[start + i] = sortedList[i];
+			}
+		}
+
+		// 퀵정렬
+		// 하나의 피벗을 기준으로 작은값과 큰값을 2분할하여 정렬
+		// 최악의 경우(피벗이 최소값 또는 최대값)인 경우 시간복잡도 n2
+		// 시간복잡도 - 평균 nlogn 최악 n2
+		// 공간복잡도 1
+		// 안정정렬 x
+
+		public static void QuickSort(IList<int> list) => QuickSort(list, 0, list.Count - 1);
+
+		public static void QuickSort(IList<int> list, int start, int end)
+		{
+			if (start >= end)
+			{
+				return;
+			}
+
+			int pivot = start;
+			int left = pivot + 1;
+			int right = end;
+
+			while (left <= right)
+			{
+				while (list[left] <= list[pivot] && left < right)
+				{
+					left++;
+				}
+				while (list[right] > list[pivot] && left <= right)
+				{
+					right--;
+				}
+
+				if (left < right)
+				{
+					Swap(list, left, right);
+				}
+				else
+				{
+					Swap(list, pivot, right);
+					break;
+				}
+			}
+
+			QuickSort(list, start, right - 1);
+			QuickSort(list, right + 1, end);
+		}
+
+
+		// 힙정렬
+		// 힙을 이용하여 우선순위가 가장 높은 요소가 가장 마지막 요소와 교체된 후 제거되는 방법을 이용
+		// 배열에서 연속적인 데이터를 사용하지 않기 때문에 캐시 메모리를 효율적으로 사용할 수 없어 상대적으로 느림
+		// 시간복잡도 nlogn
+		// 공간복잡도 1
+		// 안정정렬 x
+
+		public static void HeapSort(IList<int> list)
+		{
+			MakeHeap(list);
+
+			for (int i = list.Count - 1; i > 0; i--)
+			{
+				Swap(list, 0, i);
+				Heapify(list, 0, i);
+			}
+		}
+
+		private static void MakeHeap(IList<int> list)
+		{
+			for (int i = list.Count / 2 - 1; i >= 0; i--)
+			{
+				Heapify(list, i, list.Count);
+			}
+		}
+
+		private static void Heapify(IList<int> list, int index, int size)
+		{
+			int left = index * 2 + 1;
+			int right = index * 2 + 2;
+			int max = index;
+			if (left < size && list[left] > list[max])
+			{
+				max = left;
+			}
+			if (right < size && list[right] > list[max])
+			{
+				max = right;
+			}
+
+			if (max != index)
+			{
+				Swap(list, index, max);
+				Heapify(list, max, size);
+			}
+		}
+
+		private static void Swap(IList<int> list, int left, int right)
+		{
+			int temp = list[left];
+			list[left] = list[right];
+			list[right] = temp;
+		}
+	}
+
+	public class Graph
+	{
+		// 그래프
+		// 정점의 모음과 이 정점을 잇는 간선의 모음의 결합
+		// 한 노드에서 출발하여 다시 자기 자신의 노드로 돌아오는 순환구조를 가졌다
+		// 간선의 방향성에 따라 단 방향 그래프, 양 방향 그래프가 있다.
+		// 간선의 가중치에 따라 연결 그래프, 가중치 그래프가 있다.
+
+		// 인접행렬 그래프
+		// 그래프 내의 각 정점의 인접 관계를 나타내는 행렬
+		// 2차원 배열을 [출발정점, 도착정점]으로 표현한다.
+		// 장점 : 인접여부 접근이 빠르다.
+		// 단점 : 메모리 사용량이 많다.
+
+		// 예시 양방향 연결 그래프
+		bool[,] matrixGraph1 = new bool[5, 5]
+		{
 				{ false, false, false, false,  true },
 				{ false, false,  true, false, false },
 				{ false,  true, false,  true, false },
 				{ false, false,  true, false,  true },
 				{  true, false, false,  true, false },
-			};
+		};
 
-			const int INF = int.MaxValue;
+		const int INF = int.MaxValue;
 
-			// 예시 - 단방향 가중치 그래프(단절은 최대값으로 표현한다.)
-			int[,] matrixGraph2 = new int[5, 5]
-			{
+		// 예시 - 단방향 가중치 그래프(단절은 최대값으로 표현한다.)
+		int[,] matrixGraph2 = new int[5, 5]
+		{
 				{   0, 132, INF, INF,  16 },
 				{  12,   0, INF, INF, INF },
 				{ INF,  38,   0, INF, INF },
 				{ INF,  12, INF,   0,  54 },
 				{ INF, INF, INF, INF,   0 },
-			};
+		};
 
-			// 인접리스트 그래프
-			// 그래프 내의 각 정점의 인접 관계를 표현하는 리스트
-			// 인접한 간선만큼 리스트에 추가하여 관리한다.
-			// 장점 : 메모리 사용량이 적다
-			// 단점 : 인접여부를 확인하기 위해 리스트 탐색이 필요하다
+		// 인접리스트 그래프
+		// 그래프 내의 각 정점의 인접 관계를 표현하는 리스트
+		// 인접한 간선만큼 리스트에 추가하여 관리한다.
+		// 장점 : 메모리 사용량이 적다
+		// 단점 : 인접여부를 확인하기 위해 리스트 탐색이 필요하다
 
-			// 예시 
-			List<int>[] listGraph1;
-			List<(int, int)>[] listGraph2;
-			public void CreateGraph()
+		// 예시 
+		List<int>[] listGraph1;
+		List<(int, int)>[] listGraph2;
+		public void CreateGraph()
+		{
+			listGraph1 = new List<int>[5];
+
+			listGraph1[0].Add(1);
+			listGraph1[1].Add(0);
+			listGraph1[1].Add(3);
+			listGraph1[2].Add(0);
+			listGraph1[2].Add(1);
+			listGraph1[2].Add(4);
+			listGraph1[3].Add(1);
+			listGraph1[4].Add(3);
+		}
+	}
+
+	public class Searching
+	{
+		// 순차 탐색
+		// 자료구조에서 순차적으로 찾고자 하는 데이터를 탐색
+		// 시간 복잡도 - n
+		public static int SequentialSearch<T>(IList<T> list, in T item) where T : notnull
+		{
+			for (int i = 0; i < list.Count; i++)
 			{
-				listGraph1 = new List<int>[5];
+				if (list[i].Equals(item))
+				{
+					return i;
+				}
+			}
 
-				listGraph1[0].Add(1);
-				listGraph1[1].Add(0);
-				listGraph1[1].Add(3);
-				listGraph1[2].Add(0);
-				listGraph1[2].Add(1);
-				listGraph1[2].Add(4);
-				listGraph1[3].Add(1);
-				listGraph1[4].Add(3);
+			return -1;
+		}
+
+		// 이진 탐색
+		// 정렬이 되어 있는 자료구조에서 2분할을 통해 데이터를 탐색
+		// 단, 이진 탐색은 정렬이 되어 있는 자료에만 적용 가능하다
+		// 시간복잡도 logn
+		public static int BinarySearch<T>(IList<T> list, in T item) where T : IComparable<T>
+		{
+			int low = 0;
+			int high = list.Count - 1;
+			while (low <= high)
+			{
+				int middle = (low + high) / 2;
+				int compare = list[middle].CompareTo(item);
+
+				if (compare < 0)
+				{
+					low = middle + 1;
+				}
+				else if (compare > 0)
+				{
+					high = middle - 1;
+				}
+				else
+				{
+					return middle;
+				}
+			}
+
+			return -1;
+		}
+
+		// 깊이 우선 탐색
+		// 그래프의 분기를 만났을 때 최대한 깊이 내려간 뒤
+		// 분기의 탐색을 마쳤을 때 다음 분기를 탐색
+		// 스택을 통해
+		public static void DFS(bool[,] graph, int start, out bool[] visited, out int[] parents)
+		{
+			int size = graph.GetLength(0);
+			visited = new bool[size];
+			parents = new int[size];
+
+			for (int i = 0; i < size; i++)
+			{
+				visited[i] = false;
+				parents[i] = -1;
+			}
+
+			SearchNode(graph, start, visited, parents);
+		}
+
+		private static void SearchNode(bool[,] graph, int vertex, bool[] visited, int[] parents)
+		{
+			int size = graph.GetLength(0);
+			visited[vertex] = true;
+			for (int i = 0; i < size; i++)
+			{
+				if (graph[vertex, i] && !visited[i]) // 연결되어 있는 정점이며 방문한 적 없는 정점
+				{
+					parents[i] = vertex;
+					SearchNode(graph, i, visited, parents);
+				}
 			}
 		}
-	}			
+
+		// 너비 우선 탐색
+		// 그래프의 분기를 만났을 때 모든 분기들을 탐색한 뒤
+		// 다음 깊이의 분기들을 탐색
+		// 큐를 통해 탐색한다.
+		public static void BFS(bool[,] graph, int start, out bool[] visited, out int[] parents)
+		{
+			int size = graph.GetLength(0);
+			visited = new bool[size];
+			parents = new int[size];
+
+			for (int i = 0; i < size; i++)
+			{
+				visited[i] = false;
+				parents[i] = -1;
+			}
+
+			Queue<int> queue = new Queue<int>();
+			queue.Enqueue(start);
+			visited[start] = true;
+
+			while (queue.Count > 0)
+			{
+				int next = queue.Dequeue();
+
+				for (int i = 0; i < size; i++)
+				{
+					if (graph[next, i] && !visited[i])
+					{
+						visited[i] = true;
+						parents[i] = next;
+						queue.Enqueue(i);
+					}
+				}
+			}
+		}
+	}
+
+	public class Dijkstra
+	{
+		// 다익스트라 알고리즘
+		// 특정한 노드에서 출발하여 다른 노드로 가는 각각의 최단 경로를 구함
+		// 방문하지 않은 노드 중에서 최단 거리가 가장 짧은 노드를 선택 후
+		// 해당 노드를 거쳐 다른 노드로 가는 비용 계산
+
+		const int INF = 99999;
+
+		public static void ShortestPath(int[,] graph, int start, out bool[] visited, out int[] distance, out int[] parents)
+		{
+			int size = graph.GetLength(0);
+			visited = new bool[size];
+			distance = new int[size];
+			parents = new int[size];
+
+			for (int i = 0; i < size; i++)
+			{
+				distance[i] = INF;
+				parents[i] = -1;
+				visited[i] = false;
+			}
+			distance[start] = 0;
+
+			for (int i = 0; i < size; i++)
+			{
+				// 1. 방문하지 않은 정점 중 가장 가까운 정점부터 탐색
+				int next = -1;
+				int minCost = INF;
+				for (int j = 0; j < size; j++)
+				{
+					if (!visited[j] && distance[j] < minCost)
+					{
+						next = j;
+						minCost = distance[j];
+					}
+				}
+
+				if (next < 0)
+				{
+					break;
+				}
+				visited[next] = true;
+
+				// 2. 직접연결된 거리보다 거쳐서 더 짧아진다면 갱신
+				for (int j = 0; j < size; j++)
+				{
+					// distance[j] : 목적지까지 직접 연결된 거리
+					// distance[next] : 탐색중인 정점까지 거리
+					// graph[next, j] : 탐색중인 정점부터 목적지의 거리
+
+					if (distance[j] > distance[next] + graph[next, j])
+					{
+						distance[j] = distance[next] + graph[next, j];
+						parents[j] = next;
+					}
+				}
+			}
+		}
+	}
+
+	public class Astar
+	{
+		// a 알고리즘
+		// 다익스트라 알고리즘을 확장하여 만든 최단경로 탐색 알고리즘
+		// 결로 탐색의 우선순위를 두고 유망한 해부터 우선적으로 탐색
+
+		const int CostStraight = 10;
+		const int CostDiagonal = 14;
+
+		static Point[] Direction =
+		{
+			new Point(  0, +1 ),            // 상
+			new Point(  0, -1 ),            // 하
+			new Point( -1,  0 ),            // 좌
+			new Point( +1,  0 ),            // 우
+			new Point( -1, +1 ),            // 좌상
+			new Point( -1, -1 ),            // 좌하
+			new Point( +1, +1 ),            // 우상
+			new Point( +1, -1 )             // 우하
+		};
+
+		public static bool PathFinding(in bool[,] tileMap, in Point start, in Point end, out List<Point> path)
+		{
+			int ySize = tileMap.GetLength(0);
+			int xSize = tileMap.GetLength(1);
+
+			ASNode[,] nodes = new ASNode[ySize, xSize];
+			bool[,] visited = new bool[ySize, xSize];
+			PriorityQueue<ASNode, int> nextPointPQ = new PriorityQueue<ASNode, int>();
+
+			// 0. 시작 정점을 생성하여 추가
+			ASNode startNode = new ASNode(start, new Point(), 0, Heuristic(start, end));
+			nodes[startNode.point.y, startNode.point.x] = startNode;
+			nextPointPQ.Enqueue(startNode, startNode.f);
+
+			while (nextPointPQ.Count > 0)
+			{
+				// 1. 다음으로 탐색할 정점 꺼내기
+				ASNode nextNode = nextPointPQ.Dequeue();
+
+				// 2. 방문한 정점은 방문표시
+				visited[nextNode.point.y, nextNode.point.x] = true;
+
+				// 3. 다음으로 탐색할 정점이 도착지인 경우
+				// 도착했다고 판단해서 경로 반환
+
+				if(nextNode.point.x == end.x && nextNode.point.y == end.y)
+				{
+					path = new List<Point>();
+
+					Point point = end;
+					while(point.x == start.x && point.y == start.y == false)
+					{
+						path = new List<Point>();
+
+						Point point1 = end;
+						while(point1.x == start.x && point1.y == start.y == false)
+						{
+							path.Add(start);
+							point = nodes[point.y, point.x].parent;
+						}
+
+						path.Add(start);
+						path.Reverse();
+
+						return true;
+					}
+				}
+
+				// 4. AStar 탐색을 진행
+				// 방향 탐색
+				for (int i = 0; i < Direction.Length; i++)
+				{
+					int x = nextNode.point.x + Direction[i].x;
+					int y = nextNode.point.y + Direction[i].y;
+
+					// 4-1. 탐색하면 안되는 경우
+					// 맵을 벗어났을 경우
+					if (x < 0 || x >= xSize || y < 0 || y >= ySize)
+						continue;
+					// 탐색할 수 없는 정점일 경우
+					else if (tileMap[y, x] == false)
+						continue;
+					// 이미 방문한 정점일 경우
+					else if (visited[y, x])
+						continue;
+					// 대각선으로 이동이 불가능 지역인 경우
+					else if (i >= 4 && tileMap[y, nextNode.point.x] == false && tileMap[nextNode.point.y, x] == false)
+						continue;
+
+					// 4-2. 탐색한 정점 만들기
+					int g = nextNode.g + ((nextNode.point.x == x || nextNode.point.y == y) ? CostStraight : CostDiagonal);
+					int h = Heuristic(new Point(x, y), end);
+					ASNode newNode = new ASNode(new Point(x, y), nextNode.point, g, h);
+
+					// 4-3. 정점의 갱신이 필요한 경우 새로운 정점으로 할당
+					if (nodes[y, x] == null ||      // 탐색하지 않은 정점이거나
+						nodes[y, x].f > newNode.f)  // 가중치가 높은 정점인 경우
+					{
+						nodes[y, x] = newNode;
+						nextPointPQ.Enqueue(newNode, newNode.f);
+					}
+				}
+			}
+			path = null;
+			return false;
+		}
+
+		// 휴리스틱 : 최상의 경로를 추정하는 순위값 휴릭스틱에 의해 경로 탐색 효율이 결정된다.
+		private static int Heuristic(Point start, Point end)
+		{
+			int xSize = Math.Abs(start.x - end.x);
+			int ySize = Math.Abs(start.y - end.y);
+
+			// 맨허튼거리 : 직선을 통해 이동하는거리
+			// 유클리드 거리 : 대각선을 통해 이동하는거리
+			// 타일맵 거리 : 직선과 대각선을 통해 이동하는 거리
+
+			int straightCount = Math.Abs(xSize - ySize);
+			int diagonalCount = Math.Max(xSize, ySize) - straightCount;
+			return CostStraight * straightCount + CostDiagonal * diagonalCount;
+		}
+
+		private class ASNode
+		{
+			public Point point;
+			public Point parent;
+
+			public int g;
+			public int h;
+			public int f;
+
+			public ASNode(Point point, Point parent, int g, int h)
+			{
+				this.point = point;
+				this.parent = parent;
+				this.g = g;
+				this.h = h;
+				this.f = g + h;
+			}
+		}
+	}
+
+	public struct Point
+	{
+		public int x;
+		public int y;
+
+		public Point(int x, int y)
+		{
+			this.x = x;
+			this.y = y;
+		}
+	}
+
+	public class Tilemap
+	{
+		// 타일맵
+		// 2차원 평면의 그래프를 정점이 아닌 위치를 통해 표현하는 그래프
+		// 위치의 이동가능 유무만을 표현하는 bool 이차원 타일맵
+		// 타일의 종류를 표현한 이차원 타일맵이 있음
+		// 인접한 이동가능한 위치간 간선이 있으며 가중치는 동일함
+
+		// 타일맵 그래프
+		// 예시 - 위치의 이동가능 표현한 이차원 타일맵
+		bool[,] tileMap1 = new bool[7, 7]
+		{
+			{ false, false, false, false, false, false, false },
+			{ false,  true, false,  true, false, false, false },
+			{ false,  true, false,  true, false,  true, false },
+			{ false,  true, false,  true,  true,  true, false },
+			{ false,  true, false,  true, false, false, false },
+			{ false,  true,  true,  true,  true,  true, false },
+			{ false, false, false, false, false, false, false },
+		};
+
+		// 예시 - 타일의 종류를 표현한 이찬원 타일맵
+
+		enum TileType
+		{
+			None = ' ',
+			Wall = '#',
+			Door = '*',
+			Shop = 'S',
+			Gate = 'G'
+		}
+
+		char[,] tileMap = new char[9, 9]
+		{
+			{ '#', '#', '#', '#', '#', '#', '#', '#', '#' },
+			{ '#', ' ', '#', '#', ' ', ' ', '#', '#', '#' },
+			{ '#', ' ', '#', '#', ' ', '#', '#', ' ', '#' },
+			{ '#', ' ', '#', '#', '*', '#', '#', '*', '#' },
+			{ '#', ' ', '#', ' ', ' ', ' ', ' ', ' ', '#' },
+			{ '#', ' ', '#', ' ', '#', '#', '#', ' ', '#' },
+			{ '#', ' ', '#', ' ', '#', '#', '#', ' ', '#' },
+			{ '#', ' ', ' ', 'S', ' ', ' ', ' ', 'G', '#' },
+			{ '#', '#', '#', '#', '#', '#', '#', '#', '#' },
+		};
+	}
+
 }
